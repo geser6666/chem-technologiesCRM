@@ -1,0 +1,28 @@
+class SessionsController < ApplicationController
+	protect_from_forgery
+	include SessionsHelper
+
+	def new
+	end
+
+	def create
+		user = User.find_by_email(params[:email].downcase)
+		if user && user.authenticate(params[:password])
+			sign_in user
+			redirect_back_or user
+		else
+			flash.now[:error] = 'Invalid email/password combination' # Not quite right!
+			render 'new'
+		end
+	end
+
+	def destroy
+		sign_out
+    	redirect_to root_url
+	end
+
+	def handle_unverified_request
+		sign_out
+		super
+	end
+end
