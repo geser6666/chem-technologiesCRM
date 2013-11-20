@@ -1,5 +1,8 @@
+if RUBY_VERSION =~ /1.9/
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
+end
 source 'https://rubygems.org'
-
 gem 'rails', '3.2.13'
 gem 'bootstrap-sass', '2.0'
 gem 'bcrypt-ruby', '3.0.1'
@@ -15,6 +18,7 @@ group :development, :test do
 	gem 'guard-rspec', '1.2.1'
 	gem 'guard-spork', '1.2.0'
 	gem 'spork', '0.9.2'
+	gem 'country-select', '~> 1.1.1'
 end
 
 group :development do
