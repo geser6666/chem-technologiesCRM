@@ -11,27 +11,38 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131119120444) do
+ActiveRecord::Schema.define(:version => 20131121121942) do
 
-  create_table "users", :force => true do |t|
+  create_table "clients", :force => true do |t|
     t.string   "name"
-    t.string   "email"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.string   "password_digest"
-    t.string   "remember_token"
-    t.boolean  "admin",           :default => false
+    t.string   "address"
+    t.integer  "country_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
-end
-
-
-ActiveRecord::Schema.define(:version => 20131119095538) do
+  add_index "clients", ["name"], :name => "index_clients_on_name"
 
   create_table "countries", :force => true do |t|
+    t.string   "code"
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "countries", ["code"], :name => "index_countries_on_code", :unique => true
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.boolean  "admin",           :default => false
+    t.string   "remember_token"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
 end
