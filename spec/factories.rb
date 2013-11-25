@@ -14,4 +14,10 @@ FactoryGirl.define do
   	content "Lorem ipsum"
   	user
   end
+  factory :client do
+     name "Test Client"
+     address "Test Addtess"
+     country_id 1
+  end
+
 end
