@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe "UserPages" do
@@ -102,7 +103,7 @@ describe "UserPages" do
 
 				it { should have_selector('title', text: user.name) }
 				it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-				it { should have_link('Sign out') }
+				it { should have_link('Выйти') }
 			end
 		end
 	end
@@ -148,7 +149,7 @@ describe "UserPages" do
 
 			it { should have_selector('title', text: new_name)}
 			it { should have_selector('div.alert.alert-success') }
-			it { should have_link('Sign out', href: signout_path) }
+			it { should have_link('Выйти', href: signout_path) }
 			specify { user.reload.name.should  == new_name }
 			specify { user.reload.email.should == new_email }
 		end

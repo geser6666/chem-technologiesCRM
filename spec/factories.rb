@@ -1,3 +1,4 @@
+# encoding: utf-8
 FactoryGirl.define do
   factory :user do
     sequence(:name)  { |n| "Person #{n}" }
@@ -5,18 +6,16 @@ FactoryGirl.define do
     password "foobar"
     password_confirmation "foobar"
   
-	factory :admin do
-	  admin true
-	end
+  	factory :admin do
+  	  admin true
+  	end
   end
 
-  factory :micropost do
-  	content "Lorem ipsum"
-  	user
-  end
+  
   factory :client do
-     name "Test Client"
-     address "Test Addtess"
+     sequence(:name)  { |n| "Клиент #{n}" }
+     sequence(:address)  { |n| "Адрес клиента #{n}" }
+
      country_id 1
   end
 

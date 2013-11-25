@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe "Authentication" do
@@ -33,8 +34,8 @@ describe "Authentication" do
 			it { should have_link('Users',    href: users_path) }
 			it { should have_link('Profile', href: user_path(user)) }
 			it { should have_link('Settings', href: edit_user_path(user)) }
-			it { should have_link('Sign out', href: signout_path) }
-			it { should_not have_link('Sign in', href: signin_path) }
+			it { should have_link('Выйти', href: signout_path) }
+			it { should_not have_link('Вход', href: signin_path) }
 		end
 	end
 
@@ -93,7 +94,14 @@ describe "Authentication" do
 					before { visit users_path }
 					it { should have_selector('title', text: 'Sign in') }
 				end
-			end			
+			end	
+
+			describe "in the Clients controller" do
+				describe "visiting the client index" do
+					before { visit clients_path }
+					it  { should have_selector('title', text: 'Sign in') }
+				end
+			end		
 		end
 
 		describe "as wrong user" do
