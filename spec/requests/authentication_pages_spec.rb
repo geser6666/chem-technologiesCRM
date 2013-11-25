@@ -123,6 +123,14 @@ describe "Authentication" do
 				specify { response.should redirect_to(root_path) }
 			end
 		end
+		
+		describe "in the Clients controller" do
+			 
+		end
+
+
+
+
 	end
 
 end
