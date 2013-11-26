@@ -3,6 +3,6 @@ class ClientsController < ApplicationController
 	before_filter :signed_in_user
 
 	def index
-		@clients = Client.all
+		@clients = Client.paginate(page: params[:page])
 	end
 end
