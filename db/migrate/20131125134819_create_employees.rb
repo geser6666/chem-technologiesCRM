@@ -6,5 +6,6 @@ class CreateEmployees < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :employees, :client_id
   end
 end
