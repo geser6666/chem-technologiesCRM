@@ -16,4 +16,8 @@ describe Employee do
       end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end
   end
+  describe  "when name is not present" do
+    before { @employee.name = " " }
+    it { should_not be_valid }
+  end
 end

@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20131126091559) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "client_id"
-    t.integer  "contactcype_id"
+    t.integer  "contacttype_id"
     t.string   "value"
     t.integer  "employee_id"
     t.datetime "created_at",     :null => false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20131126091559) do
   end
 
   add_index "contacts", ["client_id"], :name => "index_contacts_on_client_id"
-  add_index "contacts", ["contactcype_id"], :name => "index_contacts_on_contactcype_id"
+  add_index "contacts", ["contacttype_id"], :name => "index_contacts_on_contacttype_id"
   add_index "contacts", ["employee_id"], :name => "index_contacts_on_employee_id"
 
   create_table "countries", :force => true do |t|
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(:version => 20131126091559) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "employees", ["client_id"], :name => "index_employees_on_client_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
