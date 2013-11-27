@@ -1,26 +1,32 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe Client do
 
-#  let(:client) { FactoryGirl.create(:client) }
-  before do
-    
-    @client = Client.new(name: "Test client", address: "Test Address", country_id: 1)
-  end
+  let(:client) { FactoryGirl.create(:client) }
 
-  subject { @client }
+  subject { client }
 
   it { should respond_to(:name) }
   it { should respond_to(:address) }
   it { should respond_to(:country_id) }
+  it { should respond_to(:relationships) } 
+  it { should respond_to(:users) }
   
-   it { should be_valid }
+  it { should be_valid }
 
   describe "when country_id is not present" do
-    before { @client.country_id = nil }
+    before { client.country_id = nil }
     it { should_not be_valid }
   end
 
+  describe "Получение отчётов" do
+    let(:user) { FactoryGirl.create(:user) }
+    before do
+      user.save
+      user.follow!(client)
+    end
 
-
+    its(:users) { should include(user) }
+  end
 end

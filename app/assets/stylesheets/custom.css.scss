@@ -237,3 +237,8 @@ aside {
     margin-bottom: 5px;
   }
 }
+
+/*чтобы кнопка выводилась рядом с именем, а не под*/
+#new_relationship{
+  display: inline;
+}
