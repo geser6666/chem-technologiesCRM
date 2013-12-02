@@ -104,6 +104,18 @@ describe "Authentication" do
 					it  { should have_selector('title', text: 'Sign in') }
 				end
 			end		
+
+			describe "в котроллере Relationships" do
+				describe "запрос к действию создания" do
+					before { post relationships_path }
+					specify { response.should redirect_to(signin_path) }
+				end
+
+				describe "запрос к действию уничтожения" do
+					before { delete relationship_path(1) }
+					specify{ response.should redirect_to(signin_path) }
+				end
+			end
 		end
 
 		describe "as wrong user" do

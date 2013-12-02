@@ -32,5 +32,10 @@ describe "ClientPages" do
 				end
 			end
 		end
+
+		describe "toggling the button" do
+          before { click_button "Получать" }
+          it { should have_selector('input', value: 'Не получать') }
+        end
 	end
 end
