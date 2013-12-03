@@ -5,12 +5,18 @@ class RelationshipsController < ApplicationController
   def create
     @client = Client.find(params[:relationship][:client_id])
     current_user.follow!(@client)
-    redirect_to clients_path
+    respond_to do |format|
+      format.html { redirect_to clients_path }
+      format.js
+    end
   end
 
   def destroy
     @client = Relationship.find(params[:id]).client
     current_user.unfollow!(@client)
-    redirect_to clients_path
+    respond_to do |format|
+      format.html { redirect_to clients_path }
+      format.js
+    end
   end
 end
