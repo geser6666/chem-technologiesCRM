@@ -1,17 +1,29 @@
 <% if signed_in? %> 
   <div class="row">
    <h1>Admin page</h1>
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>     
-      
-    </aside>
 
-    <div class="span8">
-      <h3></h3>
-      
+    <ul class="nav nav-tabs" id="myTab">
+      <li class="active"><a href="#countries">Страны</a></li>
+      <li><a href="#contacttypes">Типы контактов</a></li>
+    </ul>
+     
+    <div class="tab-content">
+      <div class="tab-pane active" id="countries">
+        .dsfs..
+      </div>
+      <div class="tab-pane" id="contacttypes">
+        ..ddsaf  fgdfg.
+      </div>
     </div>
+     
+    <script>
+        $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    })
+    
+    </script>
+    
   </div>
 <% else %>
  <div class="center hero-unit">

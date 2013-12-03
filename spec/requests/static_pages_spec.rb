@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 require 'action_view'
 include ActionView::Helpers::TextHelper
@@ -29,7 +30,7 @@ describe "Static pages" do
   end
 
   it "should have the right links on the layout" do
-    visit root_path    
+      visit root_path    
     click_link "Home"
     click_link "signup"
     page.should have_selector 'title', text: full_title('Sign up')
@@ -43,32 +44,41 @@ describe "Static pages" do
     let(:heading)   { 'Chem Technologies' }
     let(:page_title){ '' }
     it_should_behave_like  "all static pages"
+    
     describe "for signed-in user" do
       let(:user) { FactoryGirl.create(:user) }
       before do 
         sign_in user                 
       end 
+      describe  "should have the content Admin Page" do
+        before {visit adminpage_path}
+        it { should have_selector('h1',     text: 'Admin page') }
+      end
+      describe  "should have right links " do
+       it { should have_link("Страны", href: '#') }
+       it { should have_link("Типы контактов", '#') }
+      end  
+      describe "directoryes" do
+
+
+      end   
+
+
+
+    end
+    
+    describe "for non signed-in user" do
+      before {visit adminpage_path}
+      describe  "should not have the content Admin Page" do
+        it { should_not have_selector('h1',     text: 'Admin page') }
+      end
+      describe  "should have the content Signin" do
+        it {should have_selector('title', text: 'Sign in')}
+      end
+
     end
 
-     describe  "should have the content 'Admin Page'" do
-      visit '/static_pages/adminpage'
-      #it { should have_selector('h1',     text: Admin 'Admin page') }
-    end
-    # describe "for signed-in users" do
-    #   let(:user) { FactoryGirl.create(:user) }
-    #   before do
-    #    # FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
-    #    # FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
-    #     sign_in user
-    #     visit root_path
-    #   end
-
-    #   it "should render the user's feed" do
-    #     user.feed.each do |item|
-    #       page.should have_selector("li##{item.id}", text: item.content)
-    #     end
-    #   end
-    # end
+    
 
   end
 

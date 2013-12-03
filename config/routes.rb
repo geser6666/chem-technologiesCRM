@@ -1,8 +1,8 @@
 ChemTechnologiescrm::Application.routes.draw do
   get "static_pages/home"
   get "static_pages/help"
+  get "static_pages/adminpage"
 
-  match '/adminpage',    to: 'static_pages#adminpage'
   
 
 
@@ -11,6 +11,8 @@ ChemTechnologiescrm::Application.routes.draw do
   
   root to: 'static_pages#home'
 
+  match '/adminpage',    to: 'static_pages#adminpage'
+  
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
