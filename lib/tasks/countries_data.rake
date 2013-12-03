@@ -3,12 +3,14 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     make_admin
+    make_countries
+    make_contacttypes
 
     #удалить перед деплоем
     make_clients
   end
   task populatecountries: :environment do
-    make_countries
+    
   end
   def make_countries
        Country.create!(code: 'UA', name: 'Украина')
@@ -23,6 +25,11 @@ namespace :db do
                           password: "admin1",
                           password_confirmation: "admin1")
     admin.toggle!(:admin)
+  end
+  def make_contacttypes
+     ContactType.create!(name: "Телефон")
+     ContactType.create!(name: "E-mail")
+     ContactType.create!(name: "Skype")
   end
 
   def make_clients    

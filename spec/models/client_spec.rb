@@ -5,6 +5,7 @@ describe Client do
 
   let(:client) { FactoryGirl.create(:client) }
 
+
   subject { client }
 
   it { should respond_to(:name) }
@@ -13,7 +14,11 @@ describe Client do
   it { should respond_to(:relationships) } 
   it { should respond_to(:users) }
   
-  it { should be_valid }
+  
+  describe  "when name is not present" do
+    before { client.name = " " }
+    it { should_not be_valid }
+  end
 
   describe "when country_id is not present" do
     before { client.country_id = nil }
