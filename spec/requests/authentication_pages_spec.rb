@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe "Authentication" do
@@ -30,11 +31,13 @@ describe "Authentication" do
 			before { sign_in(user) }
 
 			it { should have_selector('title', text: user.name) }
-			it { should have_link('Users',    href: users_path) }
+			#to-do: сделать, чтобы список пользователей был доступен только администраторам
+			it { should have_link('Пользователи',    href: users_path) }
+			it { should have_link('Клиенты',    href: clients_path) }
 			it { should have_link('Profile', href: user_path(user)) }
 			it { should have_link('Settings', href: edit_user_path(user)) }
-			it { should have_link('Sign out', href: signout_path) }
-			it { should_not have_link('Sign in', href: signin_path) }
+			it { should have_link('Выйти', href: signout_path) }
+			it { should_not have_link('Вход', href: signin_path) }
 		end
 	end
 
@@ -93,7 +96,26 @@ describe "Authentication" do
 					before { visit users_path }
 					it { should have_selector('title', text: 'Sign in') }
 				end
-			end			
+			end	
+
+			describe "in the Clients controller" do
+				describe "visiting the client index" do
+					before { visit clients_path }
+					it  { should have_selector('title', text: 'Sign in') }
+				end
+			end		
+
+			describe "в котроллере Relationships" do
+				describe "запрос к действию создания" do
+					before { post relationships_path }
+					specify { response.should redirect_to(signin_path) }
+				end
+
+				describe "запрос к действию уничтожения" do
+					before { delete relationship_path(1) }
+					specify{ response.should redirect_to(signin_path) }
+				end
+			end
 		end
 
 		describe "as wrong user" do

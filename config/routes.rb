@@ -5,6 +5,8 @@ ChemTechnologiescrm::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :clients
+  resources :relationships, only: [:create, :destroy]
   
   root to: 'static_pages#home'
 

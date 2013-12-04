@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 require 'action_view'
 include ActionView::Helpers::TextHelper
@@ -37,4 +38,5 @@ describe "Static pages" do
     #page.should have_selector 'h1', text: 'Sample App'
     page.should have_selector 'title', text: full_title('')
   end
+
 end

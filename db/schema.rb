@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(:version => 20131126091559) do
 
   add_index "employees", ["client_id"], :name => "index_employees_on_client_id"
 
+  create_table "relationships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "client_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "relationships", ["client_id"], :name => "index_relationships_on_client_id"
+  add_index "relationships", ["user_id", "client_id"], :name => "index_relationships_on_user_id_and_client_id", :unique => true
+  add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"

@@ -14,8 +14,8 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password  
-  #has_many :relationships, foreign_key: "follower_id", dependent: :destroy
-  #has_many :followed_users, through: :relationships, source: :followed
+  has_many :relationships
+  has_many :clients, through: :relationships
 
   #has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
   #has_many :followers, through: :reverse_relationships, source: :follower
@@ -30,6 +30,18 @@ class User < ActiveRecord::Base
 
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+
+  def follow!(client)
+    relationships.create!(client_id: client.id)    
+  end
+
+  def following?(client)
+    relationships.find_by_client_id(client.id)
+  end
+
+  def unfollow!(client)
+    relationships.find_by_client_id(client.id).destroy
+  end
 
   private 
   	def create_remember_token

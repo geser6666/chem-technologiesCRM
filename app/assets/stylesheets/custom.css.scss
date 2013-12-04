@@ -197,7 +197,7 @@ input {
 
 /* users index */
 
-.users {
+.users, .clients {
   list-style: none;
   margin: 0;
   li {
@@ -236,4 +236,10 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+
+/*чтобы кнопка выводилась рядом с именем, а не под*/
+
+.frm_follow{
+  display: inline;
 }
