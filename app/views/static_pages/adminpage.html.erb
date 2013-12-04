@@ -1,3 +1,4 @@
+<% # encoding: utf-8 %>
 <% if signed_in? %> 
   <div class="row">
    <h1>Admin page</h1>
@@ -9,10 +10,10 @@
      
     <div class="tab-content">
       <div class="tab-pane active" id="countries">
-        .dsfs..
+          <%= render 'shared/countries' %>
       </div>
       <div class="tab-pane" id="contacttypes">
-        ..ddsaf  fgdfg.
+        <%= render 'shared/contacttypes' %>
       </div>
     </div>
      

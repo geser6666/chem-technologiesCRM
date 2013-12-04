@@ -48,17 +48,28 @@ describe "Static pages" do
     describe "for signed-in user" do
       let(:user) { FactoryGirl.create(:user) }
       before do 
-        sign_in user                 
+        sign_in user    
+        visit adminpage_path
       end 
       describe  "should have the content Admin Page" do
-        before {visit adminpage_path}
+        
         it { should have_selector('h1',     text: 'Admin page') }
       end
       describe  "should have right links " do
-       it { should have_link("Страны", href: '#') }
-       it { should have_link("Типы контактов", '#') }
+
+       it { should have_link("Страны", href: '#countries') }
+       it { should have_link("Типы контактов", href: '#contacttypes') }
       end  
       describe "directoryes" do
+         describe "check  visiting countries" do
+           before do
+            @country = Country.create!(code: 'UA', name: 'Украина')
+            @country.save
+            visit '#countries'
+           end
+          it { should have_selector('li',     text: '') }  
+         end
+        
 
 
       end   
