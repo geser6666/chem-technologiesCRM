@@ -1,18 +1,28 @@
 ChemTechnologiescrm::Application.routes.draw do
   get "static_pages/home"
-
   get "static_pages/help"
+  get "static_pages/adminpage"
+
+  
+
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+<<<<<<< HEAD
   resources :clients
   resources :relationships, only: [:create, :destroy]
+=======
+  resources :countries
+>>>>>>> a817b5f59aee7b42b6dd917e2d5547bf190912ce
   
   root to: 'static_pages#home'
 
+  match '/adminpage',    to: 'static_pages#adminpage'
+  
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
