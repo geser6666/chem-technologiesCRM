@@ -19,4 +19,9 @@ FactoryGirl.define do
      country_id 1
   end
 
+  factory :country do
+     sequence(:name)  { |n| "Страна #{n}" }
+     sequence(:code)  { |n| "С#{n}" }
+  end
+
 end
