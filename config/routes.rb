@@ -8,13 +8,10 @@ ChemTechnologiescrm::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-<<<<<<< HEAD
   resources :clients
   resources :relationships, only: [:create, :destroy]
-=======
   resources :countries
->>>>>>> a817b5f59aee7b42b6dd917e2d5547bf190912ce
-  
+ 
   root to: 'static_pages#home'
 
   match '/adminpage',    to: 'static_pages#adminpage'

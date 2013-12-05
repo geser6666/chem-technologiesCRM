@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-class StaticPagesController < ApplicationController
-	include SessionsHelper
-	def home
-		
-	end 
-end
-=======
 class StaticPagesController < ApplicationController
 	include SessionsHelper
 	before_filter :signed_in_user, only: [:adminpage, :countries]
@@ -24,4 +16,3 @@ class StaticPagesController < ApplicationController
 	 
 
 end
->>>>>>> a817b5f59aee7b42b6dd917e2d5547bf190912ce
