@@ -38,4 +38,26 @@ describe "ClientPages" do
           it { should have_selector('input', value: 'Не получать') }
         end
 	end
+
+	describe "Создание клиента" do
+		before do 
+			sign_in FactoryGirl.create(:user)
+			visit new_client_path 
+		end
+		
+		it { should have_selector('title', text: "Новый клиент") }
+		it { should have_selector('h1', text: "Новый клиент") }
+
+		describe "при некорректных данных" do
+			it "клиент не должен создаться" do
+				expect{ click_button "Создать" }.not_to change(Client, :count)
+			end
+
+			describe "после отправки данных" do
+				before { click_button "Создать" }
+				it { should have_selector('title', text: "Новый клиент") }
+				it { should have_content('error') }
+			end
+		end
+	end
 end

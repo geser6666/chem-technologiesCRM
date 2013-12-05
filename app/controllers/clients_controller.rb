@@ -5,4 +5,12 @@ class ClientsController < ApplicationController
 	def index
 		@clients = Client.paginate(page: params[:page])
 	end
+
+	def new
+		@client = Client.new
+	end
+
+	def create
+		redirect_to root_path
+	end
 end
