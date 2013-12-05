@@ -9,3 +9,8 @@ describe "Adminpages" do
     end
   end
 end
+
+describe "Countries" do
+	
+
+end
