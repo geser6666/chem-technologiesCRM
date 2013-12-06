@@ -40,7 +40,9 @@ describe "ClientPages" do
 	end
 
 	describe "Создание клиента" do
+		let(:country) {FactoryGirl.create(:country)}
 		before do 
+			country.save
 			sign_in FactoryGirl.create(:user)
 			visit new_client_path 
 		end
@@ -57,6 +59,27 @@ describe "ClientPages" do
 				before { click_button "Создать" }
 				it { should have_selector('title', text: "Новый клиент") }
 				it { should have_content('error') }
+			end
+		end
+
+		describe "при корректных данных" do			
+			before do				
+				fill_in "client_name", with: "Рога и копыта ООО"
+				fill_in	"client_address", with: "Город, улица, дом"
+				select country.name , from: "client_country_id"
+			end
+
+			it "клиент должен быть создан" do
+				expect{ click_button "Создать" }.to change(Client, :count).by(1)
+			end
+
+			describe "после сохранения клиента" do
+				before { click_button "Создать" }
+
+				let(:client) { Client.find_by_name("Рога и копыта ООО") }
+
+				it { should have_selector('title', text: client.name) }
+				it { should have_selector('div.alert.alert-success', text: 'Клиент успешно создан.') }
 			end
 		end
 	end

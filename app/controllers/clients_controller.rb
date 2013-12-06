@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ClientsController < ApplicationController
 	include SessionsHelper
 	before_filter :signed_in_user
@@ -11,6 +12,16 @@ class ClientsController < ApplicationController
 	end
 
 	def create
-		redirect_to root_path
+		@client = Client.new(params[:client])
+		if @client.save
+			flash[:success] = "Клиент успешно создан."
+			redirect_to @client
+		else			
+			render 'new'
+		end
+	end
+
+	def show
+		@client = Client.find(params[:id])
 	end
 end

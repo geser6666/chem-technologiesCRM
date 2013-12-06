@@ -1,0 +1,10 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<%= f.label 'Наименование' %>
+<%= f.text_field :name %>
+
+<%= f.label 'Адрес' %>
+<%= f.text_field :address %>
+
+<%= f.label 'Страна' %>
+<%= f.select :country_id, options_from_collection_for_select(Country.all, :id, :name) %>
