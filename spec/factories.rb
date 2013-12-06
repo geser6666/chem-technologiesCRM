@@ -23,5 +23,8 @@ FactoryGirl.define do
      sequence(:name)  { |n| "Страна #{n}" }
      sequence(:code)  { |n| "С#{n}" }
   end
+  factory :contacttype do
+     sequence(:name)  { |n| "Тип контакта #{n}" }
+  end
 
 end

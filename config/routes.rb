@@ -12,6 +12,7 @@ ChemTechnologiescrm::Application.routes.draw do
   resources :clients
   resources :relationships, only: [:create, :destroy]
   resources :countries
+  resources :contactTypes
  
   root to: 'static_pages#home'
 

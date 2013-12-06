@@ -1,6 +1,6 @@
-
-  <% @countries.each do |country| %>
-    <li>
-      <%= link_to country.name, country %>
-    </li>
-  <% end %>
+<% if @countries.any? %>
+  <ol class="microposts">
+    <%= render partial: 'shared/country_item', collection: @countries %>
+  </ol>
+  <%= will_paginate @countries %>
+<% end %>

@@ -1,0 +1,6 @@
+<% if @contacttypes.any? %>
+  <ol class="microposts">
+    <%= render partial: 'shared/contacttype_item', collection: @contacttypes %>
+  </ol>
+  <%= will_paginate @contacttypes %>
+<% end %>
