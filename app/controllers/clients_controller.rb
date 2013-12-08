@@ -24,4 +24,18 @@ class ClientsController < ApplicationController
 	def show
 		@client = Client.find(params[:id])
 	end
+
+	def edit
+		@client = Client.find(params[:id])
+	end
+
+	def update
+		@client = Client.find(params[:id])
+		if @client.update_attributes(params[:client])
+			flash[:success] = "Сохранение прошло успешно"
+			redirect_to @client
+		else
+			render 'edit'
+		end
+	end
 end

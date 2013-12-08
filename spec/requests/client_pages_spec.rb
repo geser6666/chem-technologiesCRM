@@ -83,4 +83,40 @@ describe "ClientPages" do
 			end
 		end
 	end
+
+	describe "Редактирвоание клиента" do
+		let(:country) { FactoryGirl.create(:country) }
+		let(:client) { FactoryGirl.create(:client) }
+		before do
+			sign_in FactoryGirl.create(:user)
+			client.country_id = country.id			
+			client.save
+			visit edit_client_path(client)			
+		end
+
+		describe "страница" do
+			it{ should have_selector('title', text: 'Редактирвоание информации о клиенте') }
+			it{ should have_selector('h1', text: 'Редактирвоание информации о клиенте') }
+		end
+
+		describe "при некорректных данных" do
+			before do 
+				fill_in "client_name", with: ''
+				click_button "Сохранить" 
+			end
+
+			it{ should have_content("error") }
+		end
+
+		describe "при корректных данных" do
+			before do
+				fill_in "client_name", with: 'New company name'
+				click_button "Сохранить"
+			end
+
+			it { should have_selector('title', text: 'New company name') }
+			it { should have_selector('div.alert.alert-success', text: 'Сохранение прошло успешно') }
+
+		end
+	end
 end
