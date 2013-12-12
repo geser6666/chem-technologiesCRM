@@ -1,7 +1,19 @@
-<% provide(:title, 'Список стран') %>
-<h1>Список стран</h1>
+<b>Countries</b>
 
 
-<ul class="clients">
-  <%= render @countries %>
+
+<ul id="countries">
+<% @countries.each do |country| %>
+  <li><%= country.name %></li>
+<% end %>
 </ul>
+ 
+<br>
+ 
+<%= form_for(@country, remote: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.label 'Добавить' %><br>
+  <%= f.text_field :name %>
+  <%= f.submit "Добавить"  %>
+<% end %>
+

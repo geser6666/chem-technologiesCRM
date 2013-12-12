@@ -1,6 +1,10 @@
 <li >
     <span class="user">
-      <%= link_to country_item.name, country_item.name %>
+      <%= link_to country_item.name %>
+      
+      <%= link_to "Show", country_item %>
+      <%= link_to "Edit", edit_country_path(country_item.id) %>
+      <%= link_to "Remove", country_item, method: :delete, data: { confirm: "Are you sure?" } %>
     </span>
   
 </li>

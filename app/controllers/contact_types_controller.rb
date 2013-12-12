@@ -1,6 +1,7 @@
 class ContactTypesController < ApplicationController
 	include SessionsHelper
 	def index
-		redirect_to adminpage_path
+		@contacttypes = ContactType.all
 	end
+
 end

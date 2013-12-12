@@ -1,11 +1,11 @@
 <% # encoding: utf-8 %>
 <% if signed_in? %> 
   <div class="row">
-   <h1>Admin page</h1>
+   <h1 id="title">Admin page</h1>
 
     <ul class="nav nav-tabs" id="myTab">
-      <li class="active"><a href="#countries">Страны</a></li>
-      <li><a href="#contacttypes">Типы контактов</a></li>
+      <li class="active"><a id="countries_link" href="#countries">Страны</a></li>
+      <li><a id="contacttypes_link" href="#contacttypes">Типы контактов</a></li>
     </ul>
      
     <div class="tab-content">
@@ -23,6 +23,12 @@
     $(this).tab('show');
     })
     
+    $(document).ready(function(){
+      var loc = window.location.hash.replace("#","");
+      if (loc == "") {loc = "countries"}
+      document.getElementById("title").innerHTML=loc+"_link";
+      document.getElementById(loc+"_link").click();
+    })
     </script>
     
   </div>
