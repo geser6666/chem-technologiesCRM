@@ -1,4 +1,4 @@
-# encoding: utf-8
+﻿# encoding: utf-8
 require 'spec_helper'
 
 describe "ClientPages" do
@@ -81,7 +81,11 @@ describe "ClientPages" do
 				it { should have_selector('title', text: client.name) }
 				it { should have_selector('div.alert.alert-success', text: 'Клиент успешно создан.') }
 			end
-		end
+    end
+
+    describe 'одновременное добавление контактов' do
+      it { should have_selector('a', text: 'Добавить контакт') }
+    end
 	end
 
 	describe "Редактирвоание клиента" do

@@ -18,7 +18,11 @@ class Client < ActiveRecord::Base
 
   validates :name, presence: true
   validates :country_id, presence: true
-  has_many :employees, foreign_key: "client_id",dependent: :destroy
-  has_many :contacts, foreign_key: "client_id",dependent: :destroy
+  has_many :employees, foreign_key: 'client_id',dependent: :destroy
+  has_many :contacts, foreign_key: 'client_id',dependent: :destroy
+  attr_accessible :contacts
+  accepts_nested_attributes_for :contacts,
+                               reject_if: lambda{ |attrs| attrs.all? {|key, value| value.blank?}},
+                               allow_destroy: true
 
 end
