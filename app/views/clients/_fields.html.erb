@@ -1,10 +1,17 @@
 <%= render 'shared/error_messages', object: f.object %>
+<fieldset>
+    <%= f.label 'Наименование' %>
+    <%= f.text_field :name %>
 
-<%= f.label 'Наименование' %>
-<%= f.text_field :name %>
+    <%= f.label 'Адрес' %>
+    <%= f.text_field :address %>
 
-<%= f.label 'Адрес' %>
-<%= f.text_field :address %>
+    <%= f.label 'Страна' %>
+    <%= f.select :country_id, options_from_collection_for_select(Country.all, :id, :name) %>
+</fieldset>
 
-<%= f.label 'Страна' %>
-<%= f.select :country_id, options_from_collection_for_select(Country.all, :id, :name) %>
+<fieldset>
+  <legend>Контакты</legend>
+  <%= render 'contacts_table', f: f %>
+  <%= link_to_add_fields('Добавить контакт', f, :contacts, class: 'btn btn-primary', title: 'Добавить контакт') %>
+</fieldset>
