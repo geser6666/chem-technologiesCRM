@@ -88,7 +88,7 @@ describe "ClientPages" do
     end
 
     describe 'одновременное добавление контактов' do
-      it { should have_selector('a', text: 'Добавить контакт') }
+      it { should have_link('Добавить контакт') }
     end
 	end
 

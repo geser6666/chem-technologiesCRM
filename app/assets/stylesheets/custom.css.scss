@@ -243,3 +243,7 @@ aside {
 .frm_follow{
   display: inline;
 }
+
+[class^="icon-"] {
+  vertical-align: inherit;
+}
