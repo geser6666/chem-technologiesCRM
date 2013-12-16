@@ -1,6 +1,7 @@
 <table id="contacts-table" class="table table-hover table-striped">
   <thead>
     <th>Контакт</th>
+    <th>Тип</th>
     <th></th>
   </thead>
   <tbody>
@@ -8,7 +9,11 @@
   <tr class="fields">
     <td><%= contacts_form.text_field :value %></td>
     <td>
-      <%= link_to_remove_fields '<i>delete</i>'.html_safe, contacts_form, :title => "Удалить контакт." %></td>
+      <%= contacts_form.select(:contacttype_id,
+                   options_from_collection_for_select(ContactType.all, :id, :name)) %>
+    </td>
+    <td>
+      <%= link_to_remove_fields '<i class="icon-remove"> </i>'.html_safe, contacts_form, :title => "Удалить контакт." %></td>
   </tr>
   <% end %>
   </tbody>

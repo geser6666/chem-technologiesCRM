@@ -25,5 +25,5 @@ class Client < ActiveRecord::Base
                                 :reject_if => :all_blank,
                                 :allow_destroy => true
 
-
+  default_scope order: 'clients.name'
 end

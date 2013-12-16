@@ -15,9 +15,12 @@
       <div class="control-group">
         <%= f.label(:contacttype_id, :class => "control-label") %>
         <div class="controls">
-          <%= f.text_field(:contacttype_id, :class => "input-xlarge field") %>
+          <%= f.select(:contacttype_id,
+                       options_from_collection_for_select(ContactType.all, :id, :name),
+                       :class => "input-xlarge field") %>
         </div>
       </div>
+
       <%= f.hidden_field(:_destroy, :class => "field") %>
     </fieldset>
   </div>

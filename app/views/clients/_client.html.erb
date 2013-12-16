@@ -1,3 +1,5 @@
 <li>  
-  <%= link_to client.name, client %>  <%= render 'follow_form', object: client if signed_in? %>
+  <%= link_to client.name, client %>
+  <%= link_to '<i class="icon-edit"> </i>'.html_safe, edit_client_path(client) %>
+  <%= render 'follow_form', object: client if signed_in? %>
 </li>

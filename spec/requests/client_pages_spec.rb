@@ -36,7 +36,11 @@ describe "ClientPages" do
 		describe "toggling the button" do
           before { click_button "Получать" }
           it { should have_selector('input', value: 'Не получать') }
-        end
+    end
+
+    describe "кнопка редактирования" do
+      it { should have_link('', href: edit_client_path(Client.first)) }
+    end
 	end
 
 	describe "Создание клиента" do
