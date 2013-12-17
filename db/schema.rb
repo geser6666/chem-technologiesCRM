@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20131217064536) do
 
   add_index "clients", ["name"], :name => "index_clients_on_name"
 
-  create_table "contacttypes", :force => true do |t|
+  create_table "contact_types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -42,6 +42,11 @@ ActiveRecord::Schema.define(:version => 20131217064536) do
   add_index "contacts", ["contacttype_id"], :name => "index_contacts_on_contacttype_id"
   add_index "contacts", ["employee_id"], :name => "index_contacts_on_employee_id"
 
+  create_table "contacttypes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "countries", :force => true do |t|
     t.string   "code"

@@ -35,23 +35,44 @@ describe "ContactType Pages" do
         expect { click_button "Добавить" }.to change(Contacttype, :count).by(1)
       end
     end
+
+    describe "adding contacttype" do
+      before { fill_in 'contacttype_name', with: "Новый тип контакта" }
+      before { click_button "Добавить" }
+      it { should have_content('created') }
+    end
   end
 
   describe "edit links" do
-    it { should have_link('icon-edit', href: edit_contacttype_path(Contacttype.first)) }
+    it { should have_link('', href: edit_contacttype_path(Contacttype.first)) }
   end
 
   describe "delete links" do
-    it { should have_link('icon-remove', href: contacttype_path(Contacttype.first)) }
+    it { should have_link('', href: contacttype_path(Contacttype.first)) }
   end
 
   describe "contacttype destruction" do
     describe "as correct user" do
       it "should delete a country" do
-        expect { click_link "icon-edit" }.to change(Contacttype, :count).by(-1)
+        expect { click_link Contacttype.first.name }.to change(Contacttype, :count).by(-1)
       end
     end
   end
+
+  describe "editing contacttype " do
+     before do
+      expect { click_link Contacttype.first.id }
+      fill_in 'contacttype_name', with: "Измененный тип контакта" 
+      expect { click_link "Сохранить" }
+     end
+     
+     
+     it { should have_content('') }
+
+
+    
+  end
+
 
 
 end

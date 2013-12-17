@@ -1,3 +1,4 @@
+# encoding: utf-8 
 class ContacttypesController < ApplicationController
   def index
     @contacttypes = Contacttype.paginate(page: params[:page])
@@ -6,6 +7,16 @@ class ContacttypesController < ApplicationController
   end
 
   def edit
+     @contacttype = Contacttype.find(params[:id])
+  end
+  def update
+          @contacttype = Contacttype.find(params[:id])
+                if @contacttype.update_attributes(params[:contacttype])
+                        flash[:success] = "Contacttye updated"
+                        redirect_to contacttypes_path
+                else
+                        render 'edit'
+                end
   end
 
   def destroy
