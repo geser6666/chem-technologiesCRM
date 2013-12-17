@@ -1,0 +1,10 @@
+<% provide(:title, 'Редактирвоание информации о типе контакта') %>
+<h1>Редактирвоание информации о типе контакта</h1>
+<div class="row">
+        <div class="span6 offset3">
+                <%= form_for(@contacttype) do |f| %>
+                    <%= render 'fields', f:f %>
+                    <%= f.submit "Сохранить", class: "btn btn-large btn-primary" %>
+                <% end %>
+        </div>
+</div>

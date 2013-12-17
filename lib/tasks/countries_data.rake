@@ -27,9 +27,9 @@ namespace :db do
     admin.toggle!(:admin)
   end
   def make_contacttypes
-     ContactType.create!(name: "Телефон")
-     ContactType.create!(name: "E-mail")
-     ContactType.create!(name: "Skype")
+     Contacttype.create!(name: "Телефон")
+     Contacttype.create!(name: "E-mail")
+     Contacttype.create!(name: "Skype")
   end
 
   def make_clients    

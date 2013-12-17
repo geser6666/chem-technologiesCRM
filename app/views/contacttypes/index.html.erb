@@ -1,0 +1,23 @@
+<% # encoding: utf-8 %>
+<% provide(:title, 'Типы контактов') %>
+
+<h1>Типы контактов</h1>
+
+<%= will_paginate %>
+
+<ul class="clients">
+  <%= render @contacttypes %>
+</ul>
+
+<%= will_paginate %>
+
+<br>
+
+<%= form_for(@contacttype) do |f| %>
+    <%= render 'fields', f:f %>
+    <%= f.submit "Добавить"  %>
+
+<% end %>
+
+
+
