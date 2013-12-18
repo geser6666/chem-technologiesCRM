@@ -2,34 +2,11 @@
 <% if signed_in? %> 
   <div class="row">
    <h1 id="title">Admin page</h1>
-
-    <ul class="nav nav-tabs" id="myTab">
-      <li class="active"><a id="countries_link" href="#countries">Страны</a></li>
-      <li><a id="contacttypes_link" href="#contacttypes">Типы контактов</a></li>
+    <% adminpage_path %>
+    <ul>
+      <li> <%= link_to "Страны", countries_path, id:'countries' %></li>
+      <li> <%= link_to "Типы контактов", contacttypes_path, id:'contacttypes' %></li>
     </ul>
-     
-    <div class="tab-content">
-      <div class="tab-pane active" id="countries">
-           <%= render 'shared/countries' %>
-      </div>
-      <div class="tab-pane" id="contacttypes">
-        <%= render 'shared/contacttypes' %>
-      </div>
-    </div>
-     
-    <script>
-        $('#myTab a').click(function (e) {
-    e.preventDefault();
-    $(this).tab('show');
-    })
-    
-    $(document).ready(function(){
-      var loc = window.location.hash.replace("#","");
-      if (loc == "") {loc = "countries"}
-      document.getElementById("title").innerHTML=loc+"_link";
-      document.getElementById(loc+"_link").click();
-    })
-    </script>
     
   </div>
 <% else %>
@@ -45,3 +22,4 @@
   </div>
   
 <% end %>
+

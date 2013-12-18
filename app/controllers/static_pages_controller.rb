@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 
 	def adminpage
 		
-		@contacttypes=ContactType.paginate(page: params[:page])
+		@contacttypes=Contacttype.paginate(page: params[:page])
 	end	
 	 
 

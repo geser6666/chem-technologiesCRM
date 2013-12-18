@@ -4,9 +4,12 @@ require 'action_view'
 include ActionView::Helpers::TextHelper
 
 describe "Static pages" do
+
   
   subject { page } 
 
+  let(:user) { FactoryGirl.create(:user) }
+   
   shared_examples_for "all static pages" do
     it { should have_selector('h1',     text: heading) }
     it { should have_selector('title',  text: full_title(page_title)) }   
@@ -28,6 +31,16 @@ describe "Static pages" do
       end 
     end
   end
+  describe "adminpage " do
+    describe "for signedin users" do
+    before { sign_in user }
+    before { visit adminpage_path }
+    it { should have_link('countries', href: countries_path)  }
+    it { should have_link('contacttypes', href: contacttypes_path)  }
+    end
+  end
+
+ 
 
   it "should have the right links on the layout" do
       visit root_path    

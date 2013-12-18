@@ -1,5 +1,9 @@
 # encoding: utf-8 
 class ContacttypesController < ApplicationController
+
+  before_filter :signed_in_user
+  include SessionsHelper
+  
   def index
     @contacttypes = Contacttype.paginate(page: params[:page])
     @contacttype = Contacttype.new

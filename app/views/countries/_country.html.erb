@@ -1,6 +1,9 @@
 <li>
-  <%= country.name %> <%= link_to '', edit_country_path(country.id),  class: "icon-edit" %>
-  <%= link_to 'delete', country_path(country.id),  class: "icon-remove", method: :delete,
+  <%= country.name %> <%= link_to '', edit_country_path(country.id),  class: "icon-edit",
+  id:country.id %>
+  <%= link_to '', country_path(country.id),  class: "icon-remove", method: :delete,
       data: { confirm: "You sure?" },
       title: country.name %>
+
+   
 </li>

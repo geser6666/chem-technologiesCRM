@@ -1,5 +1,6 @@
 # encoding: utf-8
 class CountriesController < ApplicationController
+  
 	before_filter :signed_in_user
 	include SessionsHelper
 	def new
