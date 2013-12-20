@@ -1,9 +1,15 @@
-<li>
-  <%= country.name %> <%= link_to '', edit_country_path(country.id),  class: "icon-edit",
-  id:country.id %>
-  <%= link_to '', country_path(country.id),  class: "icon-remove", method: :delete,
-      data: { confirm: "You sure?" },
-      title: country.name %>
+<tr>
+	<td class="span10">
+  		<%= country.name %>
+ 	</td>
+ 	<td class="span1">
+	    <%= link_to '', edit_country_path(country.id),  class: "icon-edit",  id:country.id %>
+  	</td>
+  	<td class="span1">
+	  	<%= link_to '', country_path(country.id),  class: "icon-remove", method: :delete,
+    	  data: { confirm: "You sure?" },
+      	  title: country.name %>
+    </td>
 
    
-</li>
+</tr>

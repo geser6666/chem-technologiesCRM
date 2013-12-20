@@ -1,6 +1,14 @@
-<li>
-  <%= contacttype.name %> <%= link_to '', edit_contacttype_path(contacttype.id),  class: "icon-edit", id:contacttype.id %>
-  <%= link_to '', contacttype_path(contacttype.id),  class: "icon-remove", method: :delete,
+<tr>
+	<td class="span10">
+	  <%= contacttype.name %> 
+	</td>
+ 	<td class="span1">
+  	  <%= link_to '', edit_contacttype_path(contacttype.id),  class: "icon-edit", id:contacttype.id %>
+  	</td>
+ 	<td class="span1">
+	  <%= link_to '', contacttype_path(contacttype.id),  class: "icon-remove", method: :delete,
               data: { confirm: "You sure?" },
               title: contacttype.name %>
-</li>
+    </td>
+</tr>
+
