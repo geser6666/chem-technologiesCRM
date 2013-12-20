@@ -126,5 +126,20 @@ describe "ClientPages" do
 			it { should have_selector('div.alert.alert-success', text: 'Сохранение прошло успешно') }
 
 		end
-	end
+  end
+
+  describe "Отображение информации о клиенте" do
+    let(:client){ FactoryGirl.create(:client) }
+    let(:country){ FactoryGirl.create(:country) }
+    before do
+      sign_in(FactoryGirl.create(:user))
+      client.country_id = country.id
+      client.contacts.build(contacttype_id:1, value:'03')
+      client.save
+      visit client_path(client)
+    end
+
+    it { should have_selector('title', text: client.name) }
+    it { should have_content('03') }
+  end
 end

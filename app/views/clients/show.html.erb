@@ -1,5 +1,17 @@
 <% provide(:title, @client.name) %>
 <h1><%= @client.name %></h1>
 <div class="row">
-	<%= "Адрес: #{@client.country.name}, #{@client.address}" %>
+    <%= "Адрес: #{@client.country.name}, #{@client.address}" %>
+  <p>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Контакты:</div>
+
+        <!-- List group -->
+        <ul class="list-group">
+          <%= render @client.contacts %>
+        </ul>
+    </div>
 </div>
+
+
