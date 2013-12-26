@@ -178,7 +178,7 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
-input {
+input, select {
   height: auto !important;
 }
 
@@ -242,4 +242,8 @@ aside {
 
 .frm_follow{
   display: inline;
+}
+
+[class^="icon-"] {
+  vertical-align: inherit;
 }

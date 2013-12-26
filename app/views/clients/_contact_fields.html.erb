@@ -1,0 +1,35 @@
+<div id="new-contact-fields" class="modal fade" data-backdrop="static">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Добавление контакта <%= "в список #{ @client.name }" unless @client.name.nil? %></h3>
+  </div>
+  <div class="modal-body">
+    <fieldset>
+      <div class="control-group">
+        <%= f.label(:value, :class => "control-label") %>
+        <div class="controls">
+          <%= f.text_field(:value, :class => "input-xlarge field") %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label(:contacttype_id, :class => "control-label") %>
+        <div class="controls">
+          <%= f.select(:contacttype_id,
+                       options_from_collection_for_select(ContactType.all, :id, :name),
+                       :class => "input-xlarge field") %>
+        </div>
+      </div>
+
+      <%= f.hidden_field(:_destroy, :class => "field") %>
+    </fieldset>
+  </div>
+  <div class="modal-footer">
+    <button id="addButton" type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" title="Добавить контакт.">Add</button>
+    <button id="cancelButton" type="button" class="btn btn-inverse" data-dismiss="modal" aria-hidden="true" title="Закрыть это окно без добавления контакта.">Cancel</button>
+  </div>
+</div>
+
+<script type="text/javascript">
+    contactFieldsUI.init();
+</script>

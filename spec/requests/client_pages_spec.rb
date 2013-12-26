@@ -1,4 +1,4 @@
-# encoding: utf-8
+﻿# encoding: utf-8
 require 'spec_helper'
 
 describe "ClientPages" do
@@ -36,6 +36,110 @@ describe "ClientPages" do
 		describe "toggling the button" do
           before { click_button "Получать" }
           it { should have_selector('input', value: 'Не получать') }
-        end
+    end
+
+    describe "кнопка редактирования" do
+      it { should have_link('', href: edit_client_path(Client.first)) }
+    end
 	end
+
+	describe "Создание клиента" do
+		let(:country) {FactoryGirl.create(:country)}
+		before do 
+			country.save
+			sign_in FactoryGirl.create(:user)
+			visit new_client_path 
+		end
+		
+		it { should have_selector('title', text: "Новый клиент") }
+		it { should have_selector('h1', text: "Новый клиент") }
+
+		describe "при некорректных данных" do
+			it "клиент не должен создаться" do
+				expect{ click_button "Создать" }.not_to change(Client, :count)
+			end
+
+			describe "после отправки данных" do
+				before { click_button "Создать" }
+				it { should have_selector('title', text: "Новый клиент") }
+				it { should have_content('error') }
+			end
+		end
+
+		describe "при корректных данных" do			
+			before do				
+				fill_in "client_name", with: "Рога и копыта ООО"
+				fill_in	"client_address", with: "Город, улица, дом"
+				select country.name , from: "client_country_id"
+			end
+
+			it "клиент должен быть создан" do
+				expect{ click_button "Создать" }.to change(Client, :count).by(1)
+			end
+
+			describe "после сохранения клиента" do
+				before { click_button "Создать" }
+
+				let(:client) { Client.find_by_name("Рога и копыта ООО") }
+
+				it { should have_selector('title', text: client.name) }
+				it { should have_selector('div.alert.alert-success', text: 'Клиент успешно создан.') }
+			end
+    end
+
+    describe 'одновременное добавление контактов' do
+      it { should have_link('Добавить контакт') }
+    end
+	end
+
+	describe "Редактирвоание клиента" do
+		let(:country) { FactoryGirl.create(:country) }
+		let(:client) { FactoryGirl.create(:client) }
+		before do
+			sign_in FactoryGirl.create(:user)
+			client.country_id = country.id			
+			client.save
+			visit edit_client_path(client)			
+		end
+
+		describe "страница" do
+			it{ should have_selector('title', text: 'Редактирвоание информации о клиенте') }
+			it{ should have_selector('h1', text: 'Редактирвоание информации о клиенте') }
+		end
+
+		describe "при некорректных данных" do
+			before do 
+				fill_in "client_name", with: ''
+				click_button "Сохранить" 
+			end
+
+			it{ should have_content("error") }
+		end
+
+		describe "при корректных данных" do
+			before do
+				fill_in "client_name", with: 'New company name'
+				click_button "Сохранить"
+			end
+
+			it { should have_selector('title', text: 'New company name') }
+			it { should have_selector('div.alert.alert-success', text: 'Сохранение прошло успешно') }
+
+		end
+  end
+
+  describe "Отображение информации о клиенте" do
+    let(:client){ FactoryGirl.create(:client) }
+    let(:country){ FactoryGirl.create(:country) }
+    before do
+      sign_in(FactoryGirl.create(:user))
+      client.country_id = country.id
+      client.contacts.build(contacttype_id:1, value:'03')
+      client.save
+      visit client_path(client)
+    end
+
+    it { should have_selector('title', text: client.name) }
+    it { should have_content('03') }
+  end
 end

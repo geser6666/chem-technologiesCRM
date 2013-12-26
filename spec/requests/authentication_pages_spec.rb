@@ -103,6 +103,16 @@ describe "Authentication" do
 					before { visit clients_path }
 					it  { should have_selector('title', text: 'Sign in') }
 				end
+
+				describe "посещение страницы создания" do
+					before { visit new_client_path }
+					it {should have_selector('title', text: 'Sign in') }
+				end
+
+				describe "отправка запроса на создание" do
+					before { post clients_path  }
+					specify { response.should redirect_to(signin_path) }
+				end
 			end		
 
 			describe "в котроллере Relationships" do
@@ -145,14 +155,6 @@ describe "Authentication" do
 				specify { response.should redirect_to(root_path) }
 			end
 		end
-		
-		describe "in the Clients controller" do
-			 
-		end
-
-
-
-
 	end
 
 end
