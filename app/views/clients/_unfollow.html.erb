@@ -1,4 +1,4 @@
 <%= form_for(current_user.relationships.find_by_client_id(object),
              html: { method: :delete, class: "frm_follow" }, remote: true) do |f| %>
-  <%= f.submit "Не получать", class: "btn btn-small" %>
+  <%= f.submit "Не получать", class: "btn btn-default btn-xs" %>
 <% end %>

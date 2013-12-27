@@ -1,9 +1,10 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
+
+<header class="navbar navbar-fixed-top navbar-inverse  col-md-10 col-md-offset-1">
+  <div class="navbar-inner " >
+    <div class="container col-md-12">
       <%= link_to "Chem Technologies", root_path, id: "logo" %>
       <nav>
-        <ul class="nav pull-right">
+        <ul class="nav nav-pills pull-right">
           <li><%= link_to "Home", root_path %></li>          
           <li><%= link_to "Help", '#' %></li>          
           <% if signed_in? %>
