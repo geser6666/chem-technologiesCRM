@@ -1,4 +1,7 @@
 ChemTechnologiescrm::Application.routes.draw do
+  resources :negotiations
+
+
   get "static_pages/home"
   get "static_pages/help"
   #get "static_pages/adminpage"
