@@ -26,5 +26,8 @@ FactoryGirl.define do
   factory :contacttype do
      sequence(:name)  { |n| "Тип контакта #{n}" }
   end
+  factory :negotiation do
+     sequence(:value)  { |n| "Переговоры #{n}" }
+  end
 
 end
