@@ -1,4 +1,6 @@
 ChemTechnologiescrm::Application.routes.draw do
+  get "negotiations/new"
+
   resources :negotiations
 
 

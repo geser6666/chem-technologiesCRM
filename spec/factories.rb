@@ -28,6 +28,7 @@ FactoryGirl.define do
   end
   factory :negotiation do
      sequence(:value)  { |n| "Переговоры #{n}" }
+     
   end
 
 end
