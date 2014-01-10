@@ -38,4 +38,11 @@ class ClientsController < ApplicationController
 			render 'edit'
 		end
 	end
+	def negotiations
+	    @title = "Переговоры"
+	    @client = Client.find(params[:id])
+	    @negotiations = @client.negotiations.paginate(page: params[:page])
+	    render 'show_negotiations'
+	end
+
 end

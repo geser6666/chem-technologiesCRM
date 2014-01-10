@@ -17,8 +17,8 @@ describe "NegotiationsPages" do
 			visit negotiations_path
 		end
 
-		it { should have_selector('title',	text: "Список клиентов") }
-		it { should have_selector('h1',		text: "Список клиентов") }
+		it { should have_selector('title',	text: "Переговоры") }
+		it { should have_selector('h4',		text: "Список клиентов") }
 
 		it "Should list each client" do
 			Client.all.each do |client|
@@ -26,18 +26,23 @@ describe "NegotiationsPages" do
 			end
 		end
 
-		# describe "pagination" do
-		# 	before(:all) { 35.times { FactoryGirl.create(:client) } }
-		# 	after(:all)  { Client.delete_all }
+		describe "pagination" do
+			before(:all) { 35.times { FactoryGirl.create(:client) } }
+			after(:all)  { Client.delete_all }
 
-		# 	it { should have_selector('div.pagination') }
+			it { should have_selector('div.pagination') }
 
-		# 	it "should list each user" do
-		# 		Client.paginate(page: 1).each do |client|
-		# 			page.should have_selector('li', text: client.name)
-		# 		end
-		# 	end
-		# end
+			it "should list each user" do
+				Client.paginate(page: 1).each do |client|
+					page.should have_selector('li', text: client.name)
+				end
+			end
+		end
+
+		describe "right links of clients" do
+			
+		end
+
 
 		# describe "toggling the button" do
   #         before { click_button "Получать" }

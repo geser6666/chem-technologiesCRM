@@ -1,9 +1,5 @@
 ChemTechnologiescrm::Application.routes.draw do
   get "negotiations/new"
-
-  resources :negotiations
-
-
   get "static_pages/home"
   get "static_pages/help"
   #get "static_pages/adminpage"
@@ -18,6 +14,14 @@ ChemTechnologiescrm::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :countries
   resources :contacttypes
+  
+  resources :negotiations do
+    
+      resources :clients
+    
+  end
+
+
  
   root to: 'static_pages#home'
 

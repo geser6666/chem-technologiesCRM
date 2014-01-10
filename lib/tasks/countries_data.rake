@@ -36,13 +36,12 @@ namespace :db do
     99.times do |n|
       name  = Faker::Name.name
       address = "адрес-#{n}"
-      
-
-      Client.create!(name: name,
+      @client=Client.create!(name: name,
                      address: address,
                      country_id: 1
                    )
     end
+
   end
 
 end

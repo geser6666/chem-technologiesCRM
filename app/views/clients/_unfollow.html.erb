@@ -1,4 +1,6 @@
 <%= form_for(current_user.relationships.find_by_client_id(object),
-             html: { method: :delete, class: "frm_follow" }, remote: true) do |f| %>
-  <%= f.submit "Не получать", class: "btn btn-small" %>
+             html: { method: :delete, class: "form-inline" }, remote: true) do |f| %>
+  <div class="form-group">
+  	<%= f.submit "Не получать", class: "btn btn-sm" %>
+  </div>	
 <% end %>
