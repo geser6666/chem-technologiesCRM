@@ -15,10 +15,11 @@ ChemTechnologiescrm::Application.routes.draw do
   resources :countries
   resources :contacttypes
   
-  resources :negotiations do
-    
-      resources :clients
-    
+  # resources :clients
+   resources :negotiations, only: [:index]
+
+  resources :clients do
+        resources :negotiations
   end
 
 
@@ -30,6 +31,8 @@ ChemTechnologiescrm::Application.routes.draw do
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+
+  #match '/clients/:id/negotiations' , to: 'negotiations#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

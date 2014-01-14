@@ -11,18 +11,24 @@ describe "NegotiationsPages" do
   end
   describe "index" do
     before do
-            sign_in user
-            FactoryGirl.create(:client, name: "Bob", address: "Луганск")
-            FactoryGirl.create(:client, name: "Ben", address: "Луганск")
-            visit negotiations_path
+        sign_in user
+        FactoryGirl.create(:client, name: "Bob", address: "Луганск")
+        FactoryGirl.create(:client, name: "Ben", address: "Луганск")
+        visit negotiations_path
     end
 
     it { should have_selector('title',        text: "Переговоры") }
     it { should have_selector('h4',                text: "Список клиентов") }
+    it { should have_selector('h4',                text: "Переговоры") }
 
     it "Should list each client" do
             Client.all.each do |client|
                     page.should have_selector('li', text: client.name)
+            end
+    end
+    it "Should have right links" do
+            Client.all.each do |client|
+                    page.should have_link(client.name, href: client_negotiations_path(client)) 
             end
     end
 
@@ -38,31 +44,19 @@ describe "NegotiationsPages" do
                     end
             end
     end
-	# describe "right links of clients" do
-	# 	before(:all) { 35.times { FactoryGirl.create(:client) } }
-	# 	after(:all)  { Client.delete_all }
+	
+	describe "get right negotiations " do
+        let(:client) { FactoryGirl.create(:client) }
 
-	# 	Client.all.each do |client|
-	# 		#page.should have_link(client.name, href: negotiations_path(client)) 
-	# 	end
-		
-	# end
-	# describe "get right negotiations " do
-	# 	#let(:client) { FactoryGirl.create(:client, name: "Bob", address: "Луганск") }
-	# 	# client.negotiations.build(value:'Negotiation 1')
-	# 	# visit negotiations_path(client)
-	# 	# page.should have_selector('li', text: "Negotiation 1")
-	# end
+        before do
+            client.negotiations.build(value:'Negotiation 1', user_id: user.id)
+            client.save
 
-
-    # describe "toggling the button" do
-# before { click_button "Получать" }
-# it { should have_selector('input', value: 'Не получать') }
-# end
-    # describe "кнопка редактирования" do
-#                 it { should have_link('', href: edit_client_path(Client.first)) }
-#         end
+            visit client_negotiations_path(client)
         end
+        it { should have_link('Negotiation 1') }
+	end
+end
 
 
 

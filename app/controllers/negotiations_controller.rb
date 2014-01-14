@@ -4,9 +4,10 @@ class NegotiationsController < ApplicationController
   end
   def index
     @clients = Client.paginate(page: params[:page])	
-	if !params[:format].nil?
-		@client = Client.find(params[:format])
+	if !params[:client_id].nil?
+		@client = Client.find(params[:client_id])
 	    @negotiations = @client.negotiations
+	
 	end
   end
   
