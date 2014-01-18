@@ -56,6 +56,19 @@ describe "NegotiationsPages" do
         end
         it { should have_link('Negotiation 1') }
 	end
+
+    describe "should have form new negotiation" do
+        let(:client) { FactoryGirl.create(:client) }
+
+        before do
+          visit client_negotiations_path(client)
+        end
+
+        it {should have_}
+
+    end
+
+
 end
 
 

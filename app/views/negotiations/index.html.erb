@@ -23,5 +23,24 @@
         </li>
       <% end %>
   <% end %>    
+
+  <div>
+   <% if (!@negotiation.nil?) %>
+        <%= form_for(@negotiation, url: client_negotiations_path(@client)) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div id="id_counter_simbol">
+
+        </div>
+        <div class="field" >
+        
+         <%= f.hidden_field :user_id  %>
+          <%= f.text_area :value, placeholder: "Введите новые переговоры...",:onkeyup => "checker()", :max_length=>200  %>
+        </div>
+        <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+      <% end %> 
+    <% end %>
+  </div>
+
+
   </div>  
 </div>  
