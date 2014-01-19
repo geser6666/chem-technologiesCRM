@@ -15,6 +15,7 @@ ChemTechnologiescrm::Application.routes.draw do
   resources :countries
   resources :contacttypes
   
+<<<<<<< HEAD
   resources :negotiations do
     
      # member do
@@ -23,6 +24,13 @@ ChemTechnologiescrm::Application.routes.draw do
      #   end
       resources :clients
     
+=======
+  # resources :clients
+   resources :negotiations, only: [:index]
+
+  resources :clients do
+        resources :negotiations, only: [:index, :create] 
+>>>>>>> 3140ed53f6bcf1e6842460db1d15928713bf878d
   end
 
 
@@ -34,6 +42,8 @@ ChemTechnologiescrm::Application.routes.draw do
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+
+  #match '/clients/:id/negotiations' , to: 'negotiations#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
