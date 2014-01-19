@@ -17,6 +17,10 @@ ChemTechnologiescrm::Application.routes.draw do
   
   resources :negotiations do
     
+     # member do
+     #     get 'clients'
+         
+     #   end
       resources :clients
     
   end

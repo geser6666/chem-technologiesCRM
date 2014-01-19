@@ -40,7 +40,9 @@ describe "NegotiationsPages" do
 		end
 
 		describe "right links of clients" do
-			
+			Client.all.each do |client|
+				page.should have_link(client.name, href: negotiations_path+'/4/')
+			end
 		end
 
 
