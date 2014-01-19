@@ -10,51 +10,6 @@ describe "NegotiationsPages" do
     it { should have_content('Вход') }
   end
   describe "index" do
-<<<<<<< HEAD
-		before do
-			sign_in FactoryGirl.create(:user)
-			FactoryGirl.create(:client, name: "Bob", address: "Луганск")
-			FactoryGirl.create(:client, name: "Ben", address: "Луганск")
-			visit negotiations_path
-		end
-
-		it { should have_selector('title',	text: "Переговоры") }
-		it { should have_selector('h4',		text: "Список клиентов") }
-
-		it "Should list each client" do
-			Client.all.each do |client|
-				page.should have_selector('li', text: client.name)
-			end
-		end
-
-		describe "pagination" do
-			before(:all) { 35.times { FactoryGirl.create(:client) } }
-			after(:all)  { Client.delete_all }
-
-			it { should have_selector('div.pagination') }
-
-			it "should list each user" do
-				Client.paginate(page: 1).each do |client|
-					page.should have_selector('li', text: client.name)
-				end
-			end
-		end
-
-		describe "right links of clients" do
-			Client.all.each do |client|
-				page.should have_link(client.name, href: negotiations_path+'/4/')
-			end
-		end
-
-
-		# describe "toggling the button" do
-  #         before { click_button "Получать" }
-  #         it { should have_selector('input', value: 'Не получать') }
-	 #    end
-		# describe "кнопка редактирования" do
-  #     		it { should have_link('', href: edit_client_path(Client.first)) }
-  #   	end
-=======
     before do
         sign_in user
         FactoryGirl.create(:client, name: "Bob", address: "Луганск")
@@ -100,7 +55,9 @@ describe "NegotiationsPages" do
             visit client_negotiations_path(client)
         end
         it { should have_link('Negotiation 1') }
->>>>>>> 3140ed53f6bcf1e6842460db1d15928713bf878d
+
+
+
 	end
 
     describe "should have form new negotiation" do
@@ -109,8 +66,7 @@ describe "NegotiationsPages" do
         before do
           visit client_negotiations_path(client)
         end
-
-        it {should have_}
+   		it { should have_selector('form', id: 'new_negotiation') }
 
     end
 

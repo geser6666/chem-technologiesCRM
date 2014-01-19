@@ -15,22 +15,12 @@ ChemTechnologiescrm::Application.routes.draw do
   resources :countries
   resources :contacttypes
   
-<<<<<<< HEAD
-  resources :negotiations do
-    
-     # member do
-     #     get 'clients'
-         
-     #   end
-      resources :clients
-    
-=======
+
   # resources :clients
    resources :negotiations, only: [:index]
 
   resources :clients do
         resources :negotiations, only: [:index, :create] 
->>>>>>> 3140ed53f6bcf1e6842460db1d15928713bf878d
   end
 
 

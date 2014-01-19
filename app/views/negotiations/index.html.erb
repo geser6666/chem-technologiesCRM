@@ -6,12 +6,8 @@
 	<ul class="clients">
 
 		<% @clients.each do |client| %>
-  	    	<li>
-<<<<<<< HEAD
-      			<%= link_to client.name, negotiations_path(client) %>
-=======
+ 	    	<li>
       			<%= link_to client.name,  client_negotiations_path(client) %>
->>>>>>> 3140ed53f6bcf1e6842460db1d15928713bf878d
 		    </li>
   		<% end %>
 	</ul>
