@@ -14,14 +14,16 @@
 	<%= will_paginate @clients %>
   </div>
   <div class="col-md-9 col-md-offset-1" >
+  
   <h4>Переговоры</h4>
   <% params[:page] %>
   <% if !@negotiations.nil? %>
-  <% @negotiations.each do |negotiation| %>
+    <% @negotiations.each do |negotiation| %>
           <li>
-            <%= link_to negotiation.value, '' %>
-        </li>
-      <% end %>
+            <%= link_to negotiation.value, edit_client_negotiation_path(@client, negotiation.id) %>
+            
+          </li>
+    <% end %>
   <% end %>    
 
   <div>

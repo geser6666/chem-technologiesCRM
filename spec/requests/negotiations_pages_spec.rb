@@ -49,12 +49,12 @@ describe "NegotiationsPages" do
         let(:client) { FactoryGirl.create(:client) }
 
         before do
-            client.negotiations.build(value:'Negotiation 1', user_id: user.id)
+            @negotiation = client.negotiations.build(value:'Negotiation 1', user_id: user.id)
             client.save
 
             visit client_negotiations_path(client)
         end
-        it { should have_link('Negotiation 1') }
+        it { should have_link('Negotiation 1', edit_client_negotiation_path(client, @negotiation)) }
 
 
 

@@ -8,7 +8,7 @@ class NegotiationsController < ApplicationController
 
 	  if !params[:client_id].nil?
 		  @client = Client.find(params[:client_id])
-	    @negotiations = @client.negotiations
+	    @negotiations = @client.negotiations.paginate(page: params[:page]) 
 	    @negotiation=@client.negotiations.build(user_id: 1)
     end
   end
