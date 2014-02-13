@@ -16,10 +16,13 @@ class Client < ActiveRecord::Base
   has_many :relationships
   has_many :users, through: :relationships
 
+
   validates :name, presence: true
   validates :country_id, presence: true
   has_many :employees, foreign_key: 'client_id',dependent: :destroy
   has_many :contacts, foreign_key: 'client_id',dependent: :destroy
+  has_many :negotiations, foreign_key: 'client_id',dependent: :destroy
+  
   attr_accessible :contacts_attributes
   accepts_nested_attributes_for :contacts,
                                 :reject_if => :all_blank,

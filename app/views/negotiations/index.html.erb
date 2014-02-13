@@ -1,0 +1,48 @@
+<% provide(:title, 'Переговоры') %>
+<div class="row">
+  <div class="col-md-2">
+	<h4>Список клиентов</h4>
+
+	<ul class="clients">
+
+		<% @clients.each do |client| %>
+ 	    	<li>
+      			<%= link_to client.name,  client_negotiations_path(client) %>
+		    </li>
+  		<% end %>
+	</ul>
+	<%= will_paginate @clients %>
+  </div>
+  <div class="col-md-9 col-md-offset-1" >
+  
+  <h4>Переговоры</h4>
+  <% params[:page] %>
+  <% if !@negotiations.nil? %>
+    <% @negotiations.each do |negotiation| %>
+          <li>
+            <%= link_to negotiation.value, edit_client_negotiation_path(@client, negotiation.id) %>
+            
+          </li>
+    <% end %>
+  <% end %>    
+
+  <div class="col-md-6">
+   <% if (!@negotiation.nil?) %>
+        <%= form_for(@negotiation, url: client_negotiations_path(@client)) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div id="id_counter_simbol">
+
+        </div>
+        <div class="field" >
+        
+         <%= f.hidden_field :user_id  %>
+          <%= f.text_area :value, placeholder: "Введите новые переговоры...",:onkeyup => "checker()", :max_length=>200  %>
+        </div>
+        <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+      <% end %> 
+    <% end %>
+  </div>
+
+
+  </div>  
+</div>  

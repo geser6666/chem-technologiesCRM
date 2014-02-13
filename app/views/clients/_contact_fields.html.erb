@@ -16,7 +16,7 @@
         <%= f.label(:contacttype_id, :class => "control-label") %>
         <div class="controls">
           <%= f.select(:contacttype_id,
-                       options_from_collection_for_select(ContactType.all, :id, :name),
+                       options_from_collection_for_select(Contacttype.all, :id, :name),
                        :class => "input-xlarge field") %>
         </div>
       </div>

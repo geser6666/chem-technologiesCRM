@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_secure_password  
   has_many :relationships
   has_many :clients, through: :relationships
+  has_many :negotiations
 
   #has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
   #has_many :followers, through: :reverse_relationships, source: :follower
