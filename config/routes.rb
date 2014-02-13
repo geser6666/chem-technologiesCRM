@@ -20,7 +20,7 @@ ChemTechnologiescrm::Application.routes.draw do
    resources :negotiations, only: [:index]
 
   resources :clients do
-        resources :negotiations, only: [:index, :create, :edit] 
+        resources :negotiations, only: [:index, :create, :edit, :update] 
   end
 
 

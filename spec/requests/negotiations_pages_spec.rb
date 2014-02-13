@@ -51,13 +51,12 @@ describe "NegotiationsPages" do
         before do
             @negotiation = client.negotiations.build(value:'Negotiation 1', user_id: user.id)
             client.save
+            @negotiation.save
 
             visit client_negotiations_path(client)
+            @ppp = edit_client_negotiation_path(client, @negotiation.id)
         end
-        it { should have_link('Negotiation 1', edit_client_negotiation_path(client, @negotiation)) }
-
-
-
+        it { should have_link('Negotiation 1',href: @ppp) }
 	end
 
     describe "should have form new negotiation" do
@@ -67,6 +66,40 @@ describe "NegotiationsPages" do
           visit client_negotiations_path(client)
         end
    		it { should have_selector('form', id: 'new_negotiation') }
+    end
+
+    describe "adding new negotiation" do
+        let(:client) { FactoryGirl.create(:client) }
+        before do
+          visit client_negotiations_path(client)
+          fill_in "negotiation_value", with: "Example negotiation"
+        end
+        
+        it "should create a negotiation" do
+            expect { click_button "Post" }.to change(Negotiation, :count).by(1)
+        end
+        
+
+
+    end
+    describe "should have form edit negotiation" do
+        let(:client) { FactoryGirl.create(:client) }
+        before do
+            @negotiation = client.negotiations.build(value:'Negotiation 1', user_id: user.id)
+            client.save
+            @negotiation.save
+          visit edit_client_negotiation_path(client, @negotiation.id)
+        end
+        it { should have_selector('form', class: 'edit_negotiation') }
+        describe "edit negotiation" do
+            before do
+                fill_in "negotiation_value", with: "Example negotiation"
+                click_button "Post"
+            end   
+            it { should have_link('Example negotiation') } 
+
+        end
+
 
     end
 
