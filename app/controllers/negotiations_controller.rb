@@ -8,21 +8,29 @@ class NegotiationsController < ApplicationController
     @clients = Client.paginate(page: params[:page])	
 
 	  if !params[:client_id].nil?
-		  @client = Client.find(params[:client_id])
+      @client = Client.find(params[:client_id])
+      @relships=@client.relationships
 	    @negotiations = @client.negotiations.paginate(page: params[:page]) 
 	    @negotiation=@client.negotiations.build(user_id: 1)
     end
   end
   def create
-  #	if !params[:negotiation_client_id].nil?
   		@client = Client.find(params[:client_id])
   		 @negotiation=@client.negotiations.build(value: params[:negotiation][:value], user_id:params[:negotiation][:user_id] )
+       @relships=@client.relationships
   		 if @negotiation.save
        		flash[:success] = "Micropost created!"
        		redirect_to client_negotiations_path(@client)
-   	   # end
-     else
-       redirect_to negotiations_path
+          #добавляем сообщения всем кому положено читать
+          if !@relships.nil? 
+
+            @relships.each do |relship| 
+             Message.create(negotiation_id: @negotiation.id, user_id: relship.user_id) 
+            end 
+          end 
+
+       else
+         redirect_to negotiations_path
      end
   end
   def edit
